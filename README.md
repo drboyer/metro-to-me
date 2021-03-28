@@ -1,5 +1,9 @@
 # metroto.me
 
+WORK IN PROGRESS
+
+Website to show walkability from every Washington Metro station
+
 ## Development
 
 ### Configuration

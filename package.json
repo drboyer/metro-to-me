@@ -1,7 +1,7 @@
 {
   "name": "metro-tome",
   "version": "1.0.0",
-  "description": "TODO",
+  "description": "Website to show walkability from every Washington Metro station",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
