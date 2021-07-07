@@ -32,6 +32,6 @@ function transformStationName(originalStationName) {
   const isochroneResults = await pAll(isochroneReqs, { concurrency: 10 });
   isochroneResults.forEach((isochroneResult, idx) => {
     const stationName = transformStationName(stations[idx].properties.Name);
-    writeFileSync(path.join(__dirname, '../data/isochrones', `${stationName}.json`), JSON.stringify(isochroneResult.body));
+    writeFileSync(path.join(__dirname, '../public/data/isochrones', `${stationName}.json`), JSON.stringify(isochroneResult.body));
   });
 })();
