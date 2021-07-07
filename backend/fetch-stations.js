@@ -1,7 +1,7 @@
 'use strict';
 /* Saves all metro stations as a GeoJSON file */
 const got = require('got');
-const { writeFileSync } = require('fs');
+const { mkdirSync, writeFileSync } = require('fs');
 const path = require('path');
 
 (async () => {
@@ -30,7 +30,15 @@ const path = require('path');
     }
   });
   
-  const outPath = path.join(__dirname, '../public/data', 'stations.json');
-  writeFileSync(outPath, JSON.stringify({ type: 'FeatureCollection', features }));
-  console.log(`Wrote stations file to ${outPath}`);
+  try {
+    // ensure data directory exists
+    mkdirSync(path.join(__dirname, '../public/data'), { recursive: true });
+
+    const outPath = path.join(__dirname, '../public/data', 'stations.json');
+    writeFileSync(outPath, JSON.stringify({ type: 'FeatureCollection', features }));
+    console.log(`Wrote stations file to ${outPath}`);
+  } catch (err) {
+    console.error(`Error writing stations file: ${err}`);
+    process.exit(1);
+  }
 })();

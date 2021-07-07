@@ -6,8 +6,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "fetch-data": "node backend/fetch-stations.js && node backend/fetch-isochrones.js",
     "lint": "vue-cli-service lint",
-    "deploy": "yarn build && echo No deploy system yet!"
+    "deploy": "yarn fetch-data && yarn build"
   },
   "repository": {
     "type": "git",
