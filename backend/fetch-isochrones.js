@@ -1,7 +1,7 @@
 'use strict';
 const pAll = require('p-all');
 const mbxIsochrone = require('@mapbox/mapbox-sdk/services/isochrone');
-const { readFileSync, writeFileSync } = require('fs');
+const { readFileSync, writeFileSync, mkdirSync } = require('fs');
 const path = require('path');
 
 /**
@@ -25,13 +25,18 @@ function transformStationName(originalStationName) {
     return () => isochroneService.getContours({
       profile: 'walking',
       coordinates: station.geometry.coordinates,
-      minutes: [10, 20, 30]
+      minutes: [10, 20, 30],
+      polygons: false
     }).send();
   });
 
   const isochroneResults = await pAll(isochroneReqs, { concurrency: 10 });
+
+  // ensure data directory exists
+  mkdirSync(path.join(__dirname, '../public/data/isochrones'), { recursive: true });
   isochroneResults.forEach((isochroneResult, idx) => {
     const stationName = transformStationName(stations[idx].properties.Name);
     writeFileSync(path.join(__dirname, '../public/data/isochrones', `${stationName}.json`), JSON.stringify(isochroneResult.body));
   });
+  console.log("Wrote all isochrone geojson files");
 })();
