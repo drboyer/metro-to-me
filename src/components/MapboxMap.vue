@@ -25,6 +25,8 @@ export default {
     return {
       center: [-77.0147, 38.9101], // DC coordinates from Wikipedia
       zoom: 10,
+      accessToken:
+        "pk.eyJ1IjoiZHJib3llciIsImEiOiJja2szY2pmd2ExOXZoMm9ueWw0a2RsMm44In0.EncRKaho5hg9lAVTMSjrMA",
     };
   },
   mounted() {
@@ -35,14 +37,20 @@ export default {
     createMap() {
       // instantiate map.  this method runs once after the vue component is mounted to the dom
       this.map = new mapboxgl.Map({
-        accessToken:
-          "pk.eyJ1IjoiZHJib3llciIsImEiOiJja2szY2pmd2ExOXZoMm9ueWw0a2RsMm44In0.EncRKaho5hg9lAVTMSjrMA",
+        accessToken: this.accessToken,
         container: "map",
         style: "mapbox://styles/mapbox/streets-v11",
         minzoom: 5,
         center: this.center, // use initial data as default
         zoom: this.zoom,
       });
+
+      this.map.addControl(
+        new MapboxGeocoder({
+          accessToken: this.accessToken,
+          mapboxgl,
+        })
+      );
 
       this.map.on("load", () => {
         this.map.addSource("station-isochrone", {

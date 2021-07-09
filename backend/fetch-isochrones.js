@@ -25,7 +25,8 @@ function transformStationName(originalStationName) {
     return () => isochroneService.getContours({
       profile: 'walking',
       coordinates: station.geometry.coordinates,
-      minutes: [10, 20, 30]
+      minutes: [10, 20, 30],
+      polygons: false
     }).send();
   });
 
@@ -37,4 +38,5 @@ function transformStationName(originalStationName) {
     const stationName = transformStationName(stations[idx].properties.Name);
     writeFileSync(path.join(__dirname, '../public/data/isochrones', `${stationName}.json`), JSON.stringify(isochroneResult.body));
   });
+  console.log("Wrote all isochrone geojson files");
 })();
