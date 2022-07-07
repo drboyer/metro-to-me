@@ -1,5 +1,5 @@
 {
-  "name": "metro-tome",
+  "name": "metro-to-me",
   "version": "0.1.0",
   "description": "Website to show walkability from every Washington Metro station",
   "main": "index.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/drboyer/metro-tome.git"
+    "url": "git+https://github.com/drboyer/metro-to-me.git"
   },
   "author": "Devin Boyer",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/drboyer/metro-tome/issues"
+    "url": "https://github.com/drboyer/metro-to-me/issues"
   },
-  "homepage": "https://github.com/drboyer/metro-tome#readme",
+  "homepage": "https://github.com/drboyer/metro-to-me#readme",
   "dependencies": {
     "axios": "0.21.1",
     "core-js": "2.6.5",

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1 class="title">🚇 MetroTo.me</h1>
+    <h1 class="title">🚇 Metro2.me</h1>
     <StationPicker />
     <MapboxMap />
   </div>
