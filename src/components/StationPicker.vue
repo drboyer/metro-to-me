@@ -7,7 +7,8 @@
       :options="stations"
       v-model="selectedStationName"
       @input="emitPickerEvent"
-      placeholder="Hello">
+      placeholder="Hello"
+    >
     </vSelect>
     Station:
   </div>
@@ -15,7 +16,7 @@
 
 <script>
 import { eventBus, stationData } from "../main";
-import 'vue-select/dist/vue-select.css';
+import "vue-select/dist/vue-select.css";
 
 export default {
   name: "StationPicker",
@@ -36,8 +37,8 @@ export default {
     },
   },
   components: {
-    vSelect: () => import('vue-select')
-  }
+    vSelect: () => import("vue-select"),
+  },
 };
 </script>
 

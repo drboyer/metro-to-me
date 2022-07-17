@@ -59,7 +59,7 @@ export default {
           accessToken: this.accessToken,
           mapboxgl,
           flyTo: false,
-          placeholder: "Add a pin to map"
+          placeholder: "Add a pin to map",
         })
       );
 
@@ -139,13 +139,11 @@ export default {
   display: block;
 }
 
-
 @media screen and (min-width: 480px) {
   #legend .legend-container {
     display: inline-block;
   }
 }
-
 
 #legend .legend-block {
   width: 1em;
