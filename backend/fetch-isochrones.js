@@ -26,7 +26,7 @@ function transformStationName(originalStationName) {
       profile: 'walking',
       coordinates: station.geometry.coordinates,
       minutes: [10, 20, 30],
-      polygons: false
+      polygons: true
     }).send();
   });
 

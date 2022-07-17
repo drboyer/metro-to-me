@@ -3,12 +3,14 @@
     <div id="map"></div>
     <div id="legend">
       <strong>Legend: </strong>
+      <em>Less than a</em>
       <div class="legend-block" id="ten-min"></div>
       <span class="label">10 Minute Walk</span>
       <div class="legend-block" id="twenty-min"></div>
       <span class="label">20 Minute Walk</span>
       <div class="legend-block" id="thirty-min"></div>
       <span class="label">30 Minute Walk</span>
+      <em>from the station</em>
     </div>
   </main>
 </template>
@@ -17,6 +19,7 @@
 import axios from "axios";
 import mapboxgl from "mapbox-gl";
 import { eventBus } from "../main";
+import bbox from "@turf/bbox";
 
 export default {
   name: "MapboxMap",
@@ -49,6 +52,8 @@ export default {
         new MapboxGeocoder({
           accessToken: this.accessToken,
           mapboxgl,
+          flyTo: false,
+          placeholder: "Add a pin to map"
         })
       );
 
@@ -92,14 +97,8 @@ export default {
 
           // then set the bounds for the map to the isochrone
           axios.get(`data/isochrones/${stationFilename}.json`).then((resp) => {
-            const bounds = new mapboxgl.LngLatBounds();
             const feature = resp.data.features[0];
-
-            feature.geometry.coordinates.forEach((lngLat) => {
-              bounds.extend(lngLat);
-            });
-
-            this.map.fitBounds(bounds);
+            this.map.fitBounds(bbox(feature), { padding: 5 });
           });
         });
       });
