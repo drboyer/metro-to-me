@@ -4,12 +4,18 @@
     <div id="legend">
       <strong>Legend: </strong>
       <em>Less than a</em>
-      <div class="legend-block" id="ten-min"></div>
-      <span class="label">10 Minute Walk</span>
-      <div class="legend-block" id="twenty-min"></div>
-      <span class="label">20 Minute Walk</span>
-      <div class="legend-block" id="thirty-min"></div>
-      <span class="label">30 Minute Walk</span>
+      <div class="legend-container">
+        <div class="legend-block" id="ten-min"></div>
+        <span class="label">10 Minute Walk</span>
+      </div>
+      <div class="legend-container">
+        <div class="legend-block" id="twenty-min"></div>
+        <span class="label">20 Minute Walk</span>
+      </div>
+      <div class="legend-container">
+        <div class="legend-block" id="thirty-min"></div>
+        <span class="label">30 Minute Walk</span>
+      </div>
       <em>from the station</em>
     </div>
   </main>
@@ -128,6 +134,18 @@ export default {
 #legend {
   padding: 1em 0;
 }
+
+#legend .legend-container {
+  display: block;
+}
+
+
+@media screen and (min-width: 480px) {
+  #legend .legend-container {
+    display: inline-block;
+  }
+}
+
 
 #legend .legend-block {
   width: 1em;
