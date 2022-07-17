@@ -25,7 +25,8 @@
     "axios": "0.21.1",
     "core-js": "2.6.5",
     "mapbox-gl": "^2.3.1",
-    "vue": "2.6.10"
+    "vue": "2.6.10",
+    "vue-select": "^3.20.0"
   },
   "devDependencies": {
     "@mapbox/mapbox-sdk": "^0.12.1",

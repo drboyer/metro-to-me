@@ -1,21 +1,22 @@
 <template>
   <div id="selector-ui">
     Walking distances from
-    <select
+    <vSelect
+      class="selector-dropdown"
       v-if="stations"
+      :options="stations"
       v-model="selectedStationName"
-      @change="emitPickerEvent($event)"
+      @input="emitPickerEvent"
+      placeholder="Hello"
     >
-      <option v-for="station in stations" v-bind:key="station">
-        {{ station }}
-      </option>
-    </select>
+    </vSelect>
     Station:
   </div>
 </template>
 
 <script>
 import { eventBus, stationData } from "../main";
+import "vue-select/dist/vue-select.css";
 
 export default {
   name: "StationPicker",
@@ -35,11 +36,20 @@ export default {
       eventBus.$emit("station-picker-changed", this.selectedStationName);
     },
   },
+  components: {
+    vSelect: () => import("vue-select"),
+  },
 };
 </script>
 
 <style scoped>
 #selector-ui {
   padding-bottom: 1em;
+}
+
+.selector-dropdown {
+  width: 24em;
+  display: inline-block;
+  vertical-align: middle;
 }
 </style>
